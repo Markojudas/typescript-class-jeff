@@ -61,6 +61,7 @@ describe('Union Stuff', () => {
         type ApiResponse = 
         | { kind: 'success', data: string}
         | { kind: 'error', error: string}
+        | { kind: 'colorful', color: string}
 
     function doApiCall(n:number): ApiResponse {
         return n % 2 === 0 ? { kind : 'success', data: 'Good Stuff'} : { kind: 'error', error: 'That blew up'}

@@ -12,6 +12,7 @@ describe('functions and arguments and stuff', () => {
         doubleAndSumIt(2,2);
         doubleAndSumIt(2,2);
         doubleAndSumIt(2,2);
+    doubleAndSumIt('pizza', [])
 
 
         
