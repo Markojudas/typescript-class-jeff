@@ -20,13 +20,16 @@ export function isValidEmployeeId(id: string): id is EmployeeId {
 }
 
 type TechId = Brand<string, "TechId">;
-
-export const verifyTechId = (candidateId: string): Result<TechId, string> => {
+type ApiError = {
+  status: number;
+  message: string;
+};
+export const verifyTechId = (candidateId: string): Result<TechId, ApiError> => {
   const isValid = candidateId.startsWith("T");
   if (isValid) {
     return Ok(candidateId as TechId);
   } else {
-    return Err("We fired that loser");
+    return Err({ status: 404, message: "No Tech with that Id" });
   }
 };
 

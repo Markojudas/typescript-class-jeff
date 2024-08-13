@@ -4,6 +4,7 @@ declare const brand: unique symbol;
 
 export type Brand<T, TBrand> = T & { [brand]: TBrand };
 
+// Parametric Polymorphism
 export type Result<T, E = undefined> =
   | { ok: true; value: T }
   | { ok: false; error: E | undefined };
