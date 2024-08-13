@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { beforeAll, describe, expect, test } from "vitest";
 import {
   assignTechToCustomerIssue,
   doSomethingWithAnEmployee,
@@ -7,6 +7,8 @@ import {
   Url,
   verifyTechId,
 } from "./employees";
+
+import { HasNone, Option, HasSome } from "./utils";
 
 describe("Mapped Types", () => {
   test("employee ids", () => {
@@ -48,6 +50,63 @@ describe("Mapped Types", () => {
       doSomethingWithATech(results.value);
     } else {
       console.log(results.error);
+    }
+  });
+});
+
+describe("utility types", () => {
+  test("Options", () => {
+    // Some Data from somewhere (API, whatever)
+    const customers = [
+      { id: "99", state: "OH", balance: 3000 },
+      { id: "101", state: "KY", balance: 10_000 },
+      { id: "200", state: "VA", balance: 99_000 },
+    ];
+
+    // What are the balances of my customers that owe me 100_000 or more?
+
+    // const balances = customers
+    //   .filter((c) => c.balance >= 100_000) // where
+    //   .map((c) => c.balance); // select
+
+    // if (balances.length > 0) {
+    //   console.log(balances);
+    // } else {
+    //   console.log("Everybody is paid up!");
+    // }
+
+    type CustomerInfo = {
+      id: string;
+      state: string;
+      balance: number;
+    };
+
+    const highBalances = highBalanceCustomers(customers, 10_000);
+    switch (highBalances.tag) {
+      case "None": {
+        console.log(
+          "No Customners with a balance equal to or greater than 50k"
+        );
+        break;
+      }
+      case "Some": {
+        console.log("These balances are high", highBalances.value);
+      }
+    }
+
+    function highBalanceCustomers(
+      customers: CustomerInfo[],
+      cutoff: number
+    ): Option<number[]> {
+      const balances = customers
+        .filter((c) => c.balance >= cutoff)
+        .map((c) => c.balance);
+
+      if (balances.length === 0) {
+        return HasNone();
+      } else {
+        return HasSome(balances);
+      }
     }
   });
 });
