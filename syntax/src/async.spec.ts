@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { doAsyncthing } from "./stuff/asynchronous";
+import { doAsyncthing, someThing } from "./stuff/asynchronous";
 
 
 
@@ -14,6 +14,12 @@ describe('Async Stuff', () => {
         p.then((result) => {
             done.expect(result).toBe('done with async thing');
         });
+
+    })
+    test('thennable', async () => {
+        const r1 = await someThing('r1');
+        console.log({ r1 });
+
 
     })
     test('async version', async () => {

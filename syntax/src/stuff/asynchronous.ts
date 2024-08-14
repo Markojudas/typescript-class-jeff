@@ -10,3 +10,12 @@ export function doAsyncthing(num: number): Promise<string> {
         }, 1000)
     })
 }
+
+
+export function someThing(x: string) {
+    return {
+        then: (cb: (result: string) => void) => {
+            cb(x);
+        }
+    }
+}
