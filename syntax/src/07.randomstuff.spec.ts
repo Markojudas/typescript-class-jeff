@@ -13,6 +13,6 @@ describe("Random stuff I want to show", () => {
 
     movie.meta.yearReleased = "1977";
 
-    expect(movie.meta.yearReleased).toBe(1977);
+    expect(movie.meta.yearReleased).toBe("1977");
   });
 });
