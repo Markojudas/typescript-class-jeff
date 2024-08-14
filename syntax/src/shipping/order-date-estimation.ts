@@ -20,3 +20,20 @@ export function calculateExpectedDeliveryDate(order: UnDeliveredOrder): Date {
 export function isUndeliveredOrder(order: Order): order is UnDeliveredOrder {
   return order.status !== "delivered";
 }
+
+type Pizza = { type: "P"; crust: "thin" | "thick" };
+type Calzone = { type: "C"; crust: "thin" | "thick"; extras: string[] };
+
+type ItalianFood = Pizza | Calzone;
+const myFood: ItalianFood = { crust: "thin", extras: ["mushroons"], type: "C" };
+function placeYourOrder(what: Pizza | Calzone) {
+  switch (what.type) {
+    case "P":
+      // we know it is a pizza..
+      break;
+
+    case "C": {
+      // we know it is a calzone
+    }
+  }
+}

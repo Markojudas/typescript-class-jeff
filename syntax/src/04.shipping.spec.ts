@@ -3,6 +3,7 @@ import {
   calculateExpectedDeliveryDate,
   isUndeliveredOrder,
   Order,
+  UnDeliveredOrder,
 } from "./shipping";
 
 describe("Shipping Orders", () => {
